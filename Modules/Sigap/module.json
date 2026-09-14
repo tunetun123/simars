@@ -1,0 +1,11 @@
+{
+    "name": "Sigap",
+    "alias": "sigap",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Sigap\\Providers\\SigapServiceProvider"
+    ],
+    "files": []
+}

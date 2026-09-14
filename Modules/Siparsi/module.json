@@ -1,0 +1,11 @@
+{
+    "name": "Siparsi",
+    "alias": "siparsi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Siparsi\\Providers\\SiparsiServiceProvider"
+    ],
+    "files": []
+}

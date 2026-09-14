@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/sigap",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Sigap\\": "app/",
+            "Modules\\Sigap\\Database\\Factories\\": "database/factories/",
+            "Modules\\Sigap\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Sigap\\Tests\\": "tests/"
+        }
+    }
+}
