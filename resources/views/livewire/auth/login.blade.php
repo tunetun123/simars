@@ -58,5 +58,9 @@
             <span wire:loading.remove wire:target="login">Masuk</span>
             <span wire:loading wire:target="login"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
         </button>
+
+        <div class="mt-6 text-center text-sm text-gray-500">
+            Lupa password? Silakan hubungi tim IT RS Bhayangkara Palu.
+        </div>
     </form>
 </div>

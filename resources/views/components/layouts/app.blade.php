@@ -31,6 +31,11 @@
                     <span class="mr-2 text-sm font-medium">{{ auth()->user()->name ?? 'User' }}</span>
                     <i class="fa-solid fa-circle-user text-2xl text-gray-400"></i>
                 </div>
+                
+                <a href="{{ route('change-password') }}" class="flex items-center text-gray-500 hover:text-blue-600 transition font-medium text-sm" title="Ubah Password">
+                    <i class="fa-solid fa-key mr-2"></i> Ubah Password
+                </a>
+
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
                     <button type="submit"

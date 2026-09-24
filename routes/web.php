@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
         return redirect('/');
     })->name('logout');
 
+    // Ubah Password
+    Route::get('/change-password', \App\Livewire\Auth\ChangePassword::class)->name('change-password');
+
     // App Switcher
     Route::get('/apps', AppSwitcher::class)->name('apps');
 
