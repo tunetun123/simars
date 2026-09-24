@@ -70,14 +70,14 @@
             <span wire:loading.remove wire:target="updatePassword">Simpan Password</span>
             <span wire:loading wire:target="updatePassword"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
         </button>
-        
-        <div class="mt-4 text-center">
-            <form method="POST" action="{{ route('logout') }}" class="inline">
-                @csrf
-                <button type="submit" class="text-sm text-gray-500 hover:text-red-600 transition">
-                    Batal & Logout
-                </button>
-            </form>
-        </div>
     </form>
+    
+    <div class="mt-4 text-center">
+        <form method="POST" action="{{ route('logout') }}" class="inline">
+            @csrf
+            <button type="submit" class="text-sm text-gray-500 hover:text-red-600 transition">
+                Batal & Logout
+            </button>
+        </form>
+    </div>
 </div>
