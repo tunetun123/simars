@@ -10,6 +10,18 @@
         </button>
     </div>
 
+    <!-- Actions & Search Section -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div class="relative w-full sm:w-72">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+            </div>
+            <input type="text" wire:model.live.debounce.300ms="search"
+                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                placeholder="Cari nama atau email...">
+        </div>
+    </div>
+
     <!-- Table Section -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="overflow-x-auto">
