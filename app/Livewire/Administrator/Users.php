@@ -14,12 +14,25 @@ class Users extends Component
     use WithPagination;
 
     public $name, $email, $password, $role, $userId;
+    public $search = '';
     public $isModalOpen = 0;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
+        $query = User::with('roles')->latest();
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%')
+                  ->orWhere('email', 'like', '%' . $this->search . '%');
+        }
+
         return view('livewire.administrator.users', [
-            'users' => User::with('roles')->latest()->paginate(10),
+            'users' => $query->paginate(10),
             'roles' => Role::all(),
         ])->layout('components.layouts.admin')->title('Manajemen Pengguna');
     }
