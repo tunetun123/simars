@@ -26,8 +26,7 @@ class ForcePasswordChange
                 // Also allow Livewire internal requests to process the password update
                 if (!$request->routeIs('change-password') &&
                     !$request->routeIs('logout') &&
-                    !$request->routeIs('livewire.update') &&
-                    !$request->is('livewire/*')) {
+                    !$request->hasHeader('X-Livewire')) {
                     return redirect()->route('change-password')->with('warning', 'Anda diwajibkan mengubah password default sebelum melanjutkan.');
                 }
             }
