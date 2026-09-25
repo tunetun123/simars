@@ -19,7 +19,11 @@ class ChangePassword extends Component
 
     public function updatePassword()
     {
+        \Illuminate\Support\Facades\Log::info('updatePassword dipanggil!');
+
         $this->validate();
+
+        \Illuminate\Support\Facades\Log::info('Validasi lolos!');
 
         $user = Auth::user();
 
