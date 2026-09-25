@@ -19,11 +19,15 @@ class ForcePasswordChange
     {
         if (Auth::check()) {
             $user = Auth::user();
-            
+
             // Check if user is using the default password
             if (Hash::check('password123', $user->password)) {
                 // Prevent redirect loops by allowing them on the change-password or logout routes
-                if (!$request->routeIs('change-password') && !$request->routeIs('logout')) {
+                // Also allow Livewire internal requests to process the password update
+                if (!$request->routeIs('change-password') &&
+                    !$request->routeIs('logout') &&
+                    !$request->routeIs('livewire.update') &&
+                    !$request->is('livewire/*')) {
                     return redirect()->route('change-password')->with('warning', 'Anda diwajibkan mengubah password default sebelum melanjutkan.');
                 }
             }
