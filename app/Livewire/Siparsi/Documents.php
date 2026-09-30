@@ -18,7 +18,7 @@ class Documents extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $title, $assessment_element_id, $assessment_element_name, $sub_point, $file, $documentId;
+    public $title, $assessment_element_id, $assessment_element_name, $sub_point, $file, $documentId, $year;
     public $isModalOpen = false;
 
     // Master-Detail Filters
@@ -36,6 +36,7 @@ class Documents extends Component
             'title' => 'required|string|max:255',
             'assessment_element_id' => 'required|exists:siparsi_assessment_elements,id',
             'sub_point' => 'required|string|max:10',
+            'year' => 'required|integer|min:2000|max:' . (date('Y') + 5),
             'file' => $this->documentId ? 'nullable|file|mimes:pdf,jpeg,png,jpg,doc,docx,xls,xlsx|max:20480' : 'required|file|mimes:pdf,jpeg,png,jpg,doc,docx,xls,xlsx|max:20480',
         ];
     }
@@ -167,6 +168,7 @@ class Documents extends Component
         $this->assessment_element_id = $document->assessment_element_id;
         $this->assessment_element_name = $document->assessmentElement?->name;
         $this->sub_point = $document->sub_point;
+        $this->year = $document->year ?? date('Y');
         $this->file = null; // Don't bind file to input
 
         $this->isModalOpen = true;
@@ -183,6 +185,7 @@ class Documents extends Component
             'title' => $this->title,
             'assessment_element_id' => $this->assessment_element_id,
             'sub_point' => strtoupper($this->sub_point),
+            'year' => $this->year,
         ];
 
         if ($this->file) {
@@ -246,6 +249,7 @@ class Documents extends Component
         $this->assessment_element_id = '';
         $this->assessment_element_name = '';
         $this->sub_point = '';
+        $this->year = date('Y');
         $this->file = null;
         $this->documentId = null;
     }
