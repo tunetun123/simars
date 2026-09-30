@@ -8,15 +8,22 @@
     </div>
 
     <!-- Toolbar: Filter -->
-    <div class="bg-white p-4 rounded-lg shadow-sm mb-6 flex space-x-4 items-center">
-        <label for="filterCategory" class="text-sm font-medium text-gray-600">Filter Standar:</label>
-        <select wire:model.live="filterCategory" id="filterCategory"
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 max-w-xs w-full">
-            <option value="">Semua Standar</option>
-            @foreach ($categories as $cat)
-                <option value="{{ $cat->id }}">{{ $cat->group?->name }} - {{ $cat->name }}</option>
-            @endforeach
-        </select>
+    <div class="bg-white p-4 rounded-lg shadow-sm mb-6 flex justify-between items-center">
+        <div class="flex space-x-4 items-center w-full">
+            <label for="filterCategory" class="text-sm font-medium text-gray-600">Filter:</label>
+            <select wire:model.live="filterCategory" id="filterCategory"
+                class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 max-w-xs w-full">
+                <option value="">Semua</option>
+                @foreach ($categories as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->group?->name }} - {{ $cat->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="flex-shrink-0">
+            <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-md border border-gray-200">
+                Total EP: <span class="font-bold text-emerald-700">{{ $elements->count() }}</span>
+            </span>
+        </div>
     </div>
 
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -63,9 +70,6 @@
                     @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="p-4 border-t border-gray-100">
-            {{ $elements->links() }}
         </div>
     </div>
 

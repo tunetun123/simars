@@ -110,6 +110,12 @@ class Documents extends Component
         $selectedCategory = null;
         if ($this->selectedCategoryId) {
             $selectedCategory = \Modules\Siparsi\Models\DocumentCategory::with(['assessmentElements.documents.uploader'])->find($this->selectedCategoryId);
+
+            // Urutkan Elemen Penilaian (EP) secara natural (cth: EP 1, EP 1.1, EP 2, EP 10)
+            if ($selectedCategory) {
+                $sortedEps = $selectedCategory->assessmentElements->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->values();
+                $selectedCategory->setRelation('assessmentElements', $sortedEps);
+            }
         }
 
         return view('livewire.siparsi.documents', [

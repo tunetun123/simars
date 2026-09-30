@@ -5,7 +5,6 @@ namespace App\Livewire\Siparsi;
 use Livewire\Component;
 use Modules\Siparsi\Models\AssessmentElement;
 use Modules\Siparsi\Models\DocumentCategory;
-use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 
@@ -13,8 +12,6 @@ use Livewire\Attributes\Title;
 #[Title('Elemen Penilaian (EP)')]
 class AssessmentElements extends Component
 {
-    use WithPagination;
-
     public $name, $document_category_id, $elementId;
     public $isModalOpen = false;
     public $filterCategory = '';
@@ -34,14 +31,17 @@ class AssessmentElements extends Component
 
     public function render()
     {
-        $query = AssessmentElement::with(['category.group'])->withCount('documents')->latest();
+        $query = AssessmentElement::with(['category.group'])->withCount('documents');
 
         if ($this->filterCategory) {
             $query->where('document_category_id', $this->filterCategory);
         }
 
+        $allElements = $query->get();
+        $sortedElements = $allElements->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->values();
+
         return view('livewire.siparsi.assessment-elements', [
-            'elements' => $query->paginate(10),
+            'elements' => $sortedElements,
             'categories' => DocumentCategory::with('group')->get()->sortBy('group.name'),
         ]);
     }
