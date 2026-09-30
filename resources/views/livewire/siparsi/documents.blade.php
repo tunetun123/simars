@@ -67,7 +67,16 @@
 
                 <div class="flex-1 overflow-y-auto p-6 space-y-6">
                     @forelse($selectedCategory->assessmentElements as $ep)
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200" x-data="{ openEp: true }">
+                                                @php
+                            $docsByYear = $ep->documents->groupBy(function($d) {
+                                return $d->year ?: 'Tanpa Tahun';
+                            })->sortKeysDesc();
+                        @endphp
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200" 
+                            x-data="{ 
+                                openEp: true,
+                                activeYear: '{{ $docsByYear->keys()->first() ?? 'Tanpa Tahun' }}'
+                            }">
                             <div
                                 class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-3 sm:gap-0">
                                 <div class="flex items-center cursor-pointer flex-wrap" @click="openEp = !openEp">
@@ -89,13 +98,27 @@
                             </div>
 
                             <div x-show="openEp" class="mt-4 pt-4 border-t border-gray-200" style="display: none;">
-                                @if ($ep->documents->count() > 0)
-                                    @foreach ($ep->documents->groupBy('sub_point')->sortKeys() as $subPoint => $docs)
-                                        <div class="mb-5 last:mb-0">
-                                            <h5
-                                                class="text-sm font-bold text-gray-700 mb-3 border-l-2 border-emerald-500 pl-2 bg-white inline-block pr-3 py-1 rounded-r shadow-sm">
-                                                Poin {{ $subPoint ?: '-' }}</h5>
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                @if ($docsByYear->count() > 0)
+                                    <!-- Year Tabs -->
+                                    <div class="flex space-x-2 mb-4 overflow-x-auto pb-2">
+                                        @foreach($docsByYear->keys() as $yearTab)
+                                            <button @click="activeYear = '{{ $yearTab }}'"
+                                                    :class="activeYear === '{{ $yearTab }}' ? 'bg-emerald-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'"
+                                                    class="px-4 py-1.5 rounded-md text-sm font-bold shadow-sm border border-gray-200 transition">
+                                                {{ $yearTab }}
+                                            </button>
+                                        @endforeach
+                                    </div>
+
+                                    <!-- Tab Contents -->
+                                    @foreach($docsByYear as $yearTab => $yearDocs)
+                                        <div x-show="activeYear === '{{ $yearTab }}'" style="display: none;">
+                                            @foreach ($yearDocs->groupBy('sub_point')->sortKeys() as $subPoint => $docs)
+                                                <div class="mb-5 last:mb-0">
+                                                    <h5
+                                                        class="text-sm font-bold text-gray-700 mb-3 border-l-2 border-emerald-500 pl-2 bg-white inline-block pr-3 py-1 rounded-r shadow-sm">
+                                                        Poin {{ $subPoint ?: '-' }}</h5>
+                                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                                 @foreach ($docs as $doc)
                                                     <div
                                                         class="bg-white p-3 rounded border border-gray-200 shadow-sm flex flex-col hover:border-emerald-300 transition group relative">
@@ -124,6 +147,8 @@
                                                         <div
                                                             class="mt-auto pt-2 border-t border-gray-100 flex justify-between items-center">
                                                             <div class="text-[10px] text-gray-400">
+                                                                <span
+                                                                    class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-bold mr-1">{{ $doc->year ?? '-' }}</span>
                                                                 Oleh: {{ $doc->uploader?->name ?? 'Sistem' }}
                                                             </div>
                                                             <div class="flex space-x-1 items-center">
@@ -139,7 +164,9 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     @endforeach
                                 @else
@@ -199,6 +226,16 @@
                                 style="text-transform: uppercase;"
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 uppercase">
                             @error('sub_point')
+                                <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tahun Dokumen</label>
+                            <input type="number" wire:model="year"
+                                class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                placeholder="Contoh: {{ date('Y') }}">
+                            @error('year')
                                 <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                             @enderror
                         </div>
