@@ -30,12 +30,12 @@
         <!-- Brand / Logo SIGAP -->
         <div class="p-6 border-b border-gray-100 text-center flex flex-col items-center justify-center">
             <div
-                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-blue-200">
+                class="w-36 h-36 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-blue-200">
                 @if (file_exists(public_path('logos/sigap_logo.png')))
                     <img src="{{ asset('logos/sigap_logo.png') }}?{{ time() }}"
                         class="w-full h-full object-cover">
                 @else
-                    <i class="fa-solid fa-box-archive text-2xl"></i>
+                    <i class="fa-solid fa-box-archive text-5xl"></i>
                 @endif
             </div>
             <h1 class="text-2xl font-bold text-blue-700 leading-tight">SIGAP</h1>

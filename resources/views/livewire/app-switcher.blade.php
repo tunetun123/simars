@@ -27,12 +27,12 @@
             <a href="{{ $hasSigapAccess ? '/sigap' : '#' }}"
                 class="group block bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center {{ $hasSigapAccess ? 'hover:shadow-lg hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-1' : 'opacity-60 cursor-not-allowed' }}">
                 <div
-                    class="w-16 h-16 mx-auto bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 {{ $hasSigapAccess ? 'group-hover:scale-110 transition-transform duration-300' : '' }} overflow-hidden">
+                    class="w-40 h-40 mx-auto bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 {{ $hasSigapAccess ? 'group-hover:scale-105 transition-transform duration-300' : '' }} overflow-hidden">
                     @if (file_exists(public_path('logos/sigap_logo.png')))
                         <img src="{{ asset('logos/sigap_logo.png') }}?{{ time() }}"
                             class="w-full h-full object-cover">
                     @else
-                        <i class="fa-solid fa-box-archive text-2xl"></i>
+                        <i class="fa-solid fa-box-archive text-5xl"></i>
                     @endif
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">SIGAP</h3>
@@ -54,12 +54,12 @@
             <a href="{{ $hasAdminAccess ? '/admin/users' : '#' }}"
                 class="group block bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center {{ $hasAdminAccess ? 'hover:shadow-lg hover:border-purple-200 transition-all duration-300 transform hover:-translate-y-1' : 'opacity-60 cursor-not-allowed' }}">
                 <div
-                    class="w-16 h-16 mx-auto bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4 {{ $hasAdminAccess ? 'group-hover:scale-110 transition-transform duration-300' : '' }} overflow-hidden">
+                    class="w-40 h-40 mx-auto bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4 {{ $hasAdminAccess ? 'group-hover:scale-105 transition-transform duration-300' : '' }} overflow-hidden">
                     @if (file_exists(public_path('logos/admin_logo.png')))
                         <img src="{{ asset('logos/admin_logo.png') }}?{{ time() }}"
                             class="w-full h-full object-cover">
                     @else
-                        <i class="fa-solid fa-users-gear text-2xl"></i>
+                        <i class="fa-solid fa-users-gear text-5xl"></i>
                     @endif
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Administrator</h3>
@@ -81,12 +81,12 @@
             <a href="{{ $hasSiparsiAccess ? '/siparsi' : '#' }}"
                 class="group block bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center {{ $hasSiparsiAccess ? 'hover:shadow-lg hover:border-emerald-200 transition-all duration-300 transform hover:-translate-y-1' : 'opacity-60 cursor-not-allowed' }}">
                 <div
-                    class="w-16 h-16 mx-auto bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4 {{ $hasSiparsiAccess ? 'group-hover:scale-110 transition-transform duration-300' : '' }} overflow-hidden">
+                    class="w-40 h-40 mx-auto bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4 {{ $hasSiparsiAccess ? 'group-hover:scale-105 transition-transform duration-300' : '' }} overflow-hidden">
                     @if (file_exists(public_path('logos/siparsi_logo.png')))
                         <img src="{{ asset('logos/siparsi_logo.png') }}?{{ time() }}"
                             class="w-full h-full object-cover">
                     @else
-                        <i class="fa-solid fa-hospital-user text-2xl"></i>
+                        <i class="fa-solid fa-hospital-user text-5xl"></i>
                     @endif
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">SIPARSI</h3>

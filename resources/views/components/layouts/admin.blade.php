@@ -27,12 +27,12 @@
 
         <div class="p-6 border-b border-gray-800 bg-gray-950 text-center">
             <div
-                class="w-12 h-12 mx-auto bg-purple-900/50 text-purple-500 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-purple-800">
+                class="w-36 h-36 mx-auto bg-purple-900/50 text-purple-500 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-purple-800">
                 @if (file_exists(public_path('logos/admin_logo.png')))
                     <img src="{{ asset('logos/admin_logo.png') }}?{{ time() }}"
                         class="w-full h-full object-cover">
                 @else
-                    <i class="fa-solid fa-users-gear text-2xl"></i>
+                    <i class="fa-solid fa-users-gear text-5xl"></i>
                 @endif
             </div>
             <h1 class="text-xl font-bold text-white uppercase tracking-wider">Administrator</h1>

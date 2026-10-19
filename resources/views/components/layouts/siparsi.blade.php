@@ -29,12 +29,12 @@
         <!-- Brand / Logo SIPARSI -->
         <div class="p-6 border-b border-gray-100 text-center flex flex-col items-center justify-center">
             <div
-                class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-emerald-200">
+                class="w-36 h-36 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-3 overflow-hidden border border-emerald-200">
                 @if (file_exists(public_path('logos/siparsi_logo.png')))
                     <img src="{{ asset('logos/siparsi_logo.png') }}?{{ time() }}"
                         class="w-full h-full object-cover">
                 @else
-                    <i class="fa-solid fa-hospital-user text-2xl"></i>
+                    <i class="fa-solid fa-hospital-user text-5xl"></i>
                 @endif
             </div>
             <h1 class="text-2xl font-bold text-emerald-700 leading-tight">SIPARSI</h1>
