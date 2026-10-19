@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-box-archive text-2xl"></i>
                     @endif
                 </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aplikasi SIGAP</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">SIGAP</h3>
                 <p class="text-sm text-gray-500">Sistem Informasi Pengelolaan Arsip Dokumen Digital.</p>
             </a>
             @if (!$hasSigapAccess)
@@ -89,7 +89,7 @@
                         <i class="fa-solid fa-hospital-user text-2xl"></i>
                     @endif
                 </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aplikasi SIPARSI</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">SIPARSI</h3>
                 <p class="text-sm text-gray-500">Sistem Pengelolaan Arsip Akreditasi Rumah Sakit.</p>
             </a>
             @if (!$hasSiparsiAccess)
