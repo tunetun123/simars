@@ -58,6 +58,7 @@
                         <th class="px-6 py-3 font-medium">Elemen Penilaian</th>
                         <th class="px-6 py-3 font-medium">Skor (Point)</th>
                         <th class="px-6 py-3 font-medium">Pengunggah</th>
+                        <th class="px-6 py-3 font-medium text-right">Waktu Upload</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -76,12 +77,16 @@
                                 {{ $doc->point }}
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-600">
-                                {{ $doc->uploader?->name }}
+                                {{ $doc->uploader?->name ?? 'Sistem' }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 text-right">
+                                <div>{{ $doc->created_at?->format('d/m/Y H:i') }}</div>
+                                <div class="text-xs text-gray-400">{{ $doc->created_at?->diffForHumans() }}</div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">Belum ada dokumen yang
+                            <td colspan="5" class="px-6 py-8 text-center text-gray-500">Belum ada dokumen yang
                                 diunggah.</td>
                         </tr>
                     @endforelse
