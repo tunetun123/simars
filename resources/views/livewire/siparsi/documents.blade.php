@@ -145,19 +145,21 @@
                                                             <span class="truncate">{{ $doc->file_name }}</span>
                                                         </div>
                                                         <div
-                                                            class="mt-auto pt-2 border-t border-gray-100 flex justify-between items-center">
-                                                            <div class="text-[10px] text-gray-400">
+                                                            class="mt-auto pt-2 border-t border-gray-100 flex justify-between items-center gap-2">
+                                                            <div class="text-[10px] text-gray-400 min-w-0 flex-1">
                                                                 <div class="flex items-center space-x-1 mb-0.5">
                                                                     <span
-                                                                        class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-bold">{{ $doc->year ?? '-' }}</span>
-                                                                    <span class="truncate">Oleh: {{ $doc->uploader?->name ?? 'Sistem' }}</span>
+                                                                        class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-bold flex-shrink-0">{{ $doc->year ?? '-' }}</span>
+                                                                    <span class="truncate block" title="Oleh: {{ $doc->uploader?->name ?? 'Sistem' }}">
+                                                                        Oleh: {{ Str::limit($doc->uploader?->name ?? 'Sistem', 12) }}
+                                                                    </span>
                                                                 </div>
-                                                                <div class="flex items-center text-gray-400">
-                                                                    <i class="fa-regular fa-clock mr-1 text-[9px]"></i>
+                                                                <div class="flex items-center text-gray-400 whitespace-nowrap">
+                                                                    <i class="fa-regular fa-clock mr-1 text-[9px] flex-shrink-0"></i>
                                                                     <span>{{ $doc->created_at?->format('d/m/Y H:i') }}</span>
                                                                 </div>
                                                             </div>
-                                                            <div class="flex space-x-1 items-center">
+                                                            <div class="flex space-x-1 items-center flex-shrink-0">
                                                                 <button wire:click="preview({{ $doc->id }})"
                                                                     class="text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 w-7 h-7 rounded flex items-center justify-center transition"
                                                                     title="Pratinjau"><i
