@@ -147,9 +147,15 @@
                                                         <div
                                                             class="mt-auto pt-2 border-t border-gray-100 flex justify-between items-center">
                                                             <div class="text-[10px] text-gray-400">
-                                                                <span
-                                                                    class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-bold mr-1">{{ $doc->year ?? '-' }}</span>
-                                                                Oleh: {{ $doc->uploader?->name ?? 'Sistem' }}
+                                                                <div class="flex items-center space-x-1 mb-0.5">
+                                                                    <span
+                                                                        class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-bold">{{ $doc->year ?? '-' }}</span>
+                                                                    <span class="truncate">Oleh: {{ $doc->uploader?->name ?? 'Sistem' }}</span>
+                                                                </div>
+                                                                <div class="flex items-center text-gray-400">
+                                                                    <i class="fa-regular fa-clock mr-1 text-[9px]"></i>
+                                                                    <span>{{ $doc->created_at?->format('d/m/Y H:i') }}</span>
+                                                                </div>
                                                             </div>
                                                             <div class="flex space-x-1 items-center">
                                                                 <button wire:click="preview({{ $doc->id }})"
@@ -284,9 +290,13 @@
                 <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
                     <div>
                         <h3 class="text-lg font-bold text-gray-800">{{ $previewDoc->title }}</h3>
-                        <p class="text-xs text-emerald-600 font-bold mt-1">{{ $previewDoc->assessmentElement?->name }}
-                            &bull; <span
-                                class="text-gray-500 font-normal font-mono">{{ $previewDoc->file_name }}</span></p>
+                        <p class="text-xs text-emerald-600 font-bold mt-1">
+                            {{ $previewDoc->assessmentElement?->name }}
+                            &bull; <span class="text-gray-500 font-normal font-mono">{{ $previewDoc->file_name }}</span>
+                            @if($previewDoc->created_at)
+                                &bull; <span class="text-gray-400 font-normal"><i class="fa-regular fa-clock mr-1"></i>Diupload: {{ $previewDoc->created_at->format('d/m/Y H:i') }}</span>
+                            @endif
+                        </p>
                     </div>
                     <button wire:click="closePreviewModal"
                         class="text-gray-400 hover:text-gray-600 bg-gray-200 hover:bg-gray-300 rounded-full w-8 h-8 flex items-center justify-center transition">
